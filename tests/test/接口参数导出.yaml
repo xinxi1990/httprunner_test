@@ -1,0 +1,33 @@
+-   config:
+        name: 'test4'
+        request:
+            base_url: ''
+            headers:
+                User-Agent:  'Apache-HttpClient/4.5.3 (Java/1.8.0_161)'
+-   test:
+        name:  '/api/v3/topics.json'
+        request:
+            method:  'GET'
+            url:  'https://testerhome.com/api/v3/topics.json'
+        validate:
+        -   eq:
+            - status_code
+            - 200
+        -   eq:
+            - headers.Content-Type
+            -  'application/json; charset=utf-8'
+        extract:
+            - id: content.topics.1.id
+
+-   test:
+        name:  http://www.baidu.com/$id
+        request:
+            method:  'GET'
+            url:  https://www.baidu.com/$id
+        validate:
+        -   eq:
+            - status_code
+            - 200
+        -   eq:
+            - headers.Content-Type
+            - 'application/json; charset=utf-8'

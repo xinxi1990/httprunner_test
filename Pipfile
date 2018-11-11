@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+pyyaml = "*"
+jinja2 = "*"
+har2case = "*"
+colorama = "*"
+colorlog = "*"
+requests-toolbelt = "*"
+request = "*"
+
+[dev-packages]
+Flask = "<1.0.0"
+coverage = "*"
+coveralls = "*"
+twine = "*"
+contextlib2 = "*"
+locustio = "*"
+
+[scripts]

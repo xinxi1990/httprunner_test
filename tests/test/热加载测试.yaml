@@ -1,0 +1,21 @@
+-   config:
+        name: 'test6'
+        request:
+            base_url: ''
+            headers:
+                User-Agent:  'Apache-HttpClient/4.5.3 (Java/1.8.0_161)'
+        variables: []
+-   test:
+        name:  '/api/v3/topics.json'
+        request:
+            method:  'GET'
+            url:  'https://testerhome.com/api/v3/topics.json'
+            headers:
+              user_id: "${get_udid()}"
+        validate:
+        -   eq:
+            - status_code
+            - 200
+        -   eq:
+            - headers.Content-Type
+            -  'application/json; charset=utf-8'

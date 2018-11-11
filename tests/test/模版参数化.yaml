@@ -1,0 +1,39 @@
+- config:
+      name: 'test5'
+      request:
+          base_url: 'https://testerhome.com'
+          headers:
+              User-Agent:  'Apache-HttpClient/4.5.3 (Java/1.8.0_161)'
+      variables: []
+      parameters:
+        - user_id: ["1001", "1002", "1003", "1004"]
+
+# header参数化
+- test:
+      name:  '/api/v3/topics.json'
+      request:
+          method:  'GET'
+          url:  '/api/v3/topics.json'
+          headers:
+                user_id: $user_id
+      validate:
+      -   eq:
+          - status_code
+          - 200
+      -   eq:
+          - headers.Content-Type
+          -  'application/json; charset=utf-8'
+
+# url参数化
+- test:
+      name:  /api/v3/topics.json/$user_id
+      request:
+          method:  'GET'
+          url:  /api/v3/topics.json/$user_id
+      validate:
+      -   eq:
+          - status_code
+          - 200
+      -   eq:
+          - headers.Content-Type
+          -  'application/json; charset=utf-8'

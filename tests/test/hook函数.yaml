@@ -1,0 +1,28 @@
+-   config:
+        name: 'test1'
+        request:
+            base_url: ''
+            headers:
+                User-Agent:  'Apache-HttpClient/4.5.3 (Java/1.8.0_161)'
+        setup_hooks:
+            - ${hook_print(setup)}
+        teardown_hooks:
+            - ${hook_print(teardown)}
+-   test:
+        name:  '/api/v3/topics.json'
+        request:
+            method:  'GET'
+            url:  'https://testerhome.com/api/v3/topics.json'
+        validate:
+        -   eq:
+            - status_code
+            - 200
+        -   eq:
+            - headers.Content-Type
+            -  'application/json; charset=utf-8'
+        setup_hooks:
+          - ${setup_hook_prepare_kwargs($request)}
+            ${setup_hook_httpntlmauth($request)}
+
+        teardown_hooks:
+            - ${teardown_hook_sleep_N_secs($response, 5)}

@@ -1,0 +1,21 @@
+# 公共配置全局化
+
+- config:
+      name: 'test2'
+      request:
+          base_url: 'https://testerhome.com'
+          headers:
+              User-Agent:  'Apache-HttpClient/4.5.3 (Java/1.8.0_161)'
+      variables: []
+- test:
+      name:  '/api/v3/topics.json'
+      request:
+          method:  'GET'
+          url:  '/api/v3/topics.json'
+      validate:
+      -   eq:
+          - status_code
+          - 200
+      -   eq:
+          - headers.Content-Type
+          -  'application/json; charset=utf-8'
